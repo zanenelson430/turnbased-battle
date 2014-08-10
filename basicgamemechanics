@@ -1,0 +1,64 @@
+import random
+
+def game():
+
+#player
+    player_health = 100
+    player_punch = 'punch'
+    player_kick = 'kick'
+    player_heavypunch = 'heavypunch'
+    player_roundhouse = 'roundhouse'
+
+#enemy
+    enemy_health = 100
+    enemy_punch = 'punch'
+    enemy_kick = 'kick'
+    enemy_heavypunch = 'heavypunch'
+    enemy_roundhouse = 'roundhouse'
+
+    finished = False
+    while not finished:
+        enemy_moves = [enemy_punch, enemy_kick, enemy_heavypunch, enemy_roundhouse]
+        enemy_move = random.choice(enemy_moves)
+    
+        print 'PLAYER: health %s, moves: %s, %s, %s, %s' % (player_health, player_punch, player_kick, player_heavypunch, player_roundhouse)
+        print 'ENEMY: health %s, moves: %s, %s, %s, %s' % (enemy_health, enemy_punch, enemy_kick, enemy_heavypunch, enemy_roundhouse)
+#player input time
+        attack = raw_input('Choose attack ')
+        if attack == 'punch':
+            enemy_health = enemy_health - 25
+        elif attack == 'heavypunch':
+            enemy_health = enemy_health - 50
+        elif attack == 'kick':
+            enemy_health = enemy_health - 35
+        elif attack == 'roundhouse':
+            enemy_health = enemy_health - 65
+#enemy input
+        if enemy_move == 'punch':
+            player_health = player_health - 25
+        elif enemy_move == 'heavypunch':
+            player_health = player_health - 50
+        elif enemy_move == 'kick':
+            player_health == player_health - 35
+        elif enemy_move == 'roundhouse':
+            player_health = player_health - 60
+#winning criteria
+        if player_health < 0:
+            player_health = 0
+            print "ENEMY WINS"
+            break
+        elif enemy_health <= 0:
+            enemy_health < 0
+            print "PLAYER WINS"
+            break
+
+    finished = True
+    
+game()
+
+raw_input()
+
+
+
+
+
