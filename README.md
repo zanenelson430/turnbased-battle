@@ -1,6 +1,14 @@
 turnbased-battle
 ================
 
+2.0 update log
+Major stamina overhaul
+Battle Modifiers
+More-weighted battles
+
+
+
+
 My attempt at creating a turn based battle game with python. It's very basic but I plan to expand upon it.
 Right now it includes the rudimentary basics that make a fighting game work. Health and attacks.
 
