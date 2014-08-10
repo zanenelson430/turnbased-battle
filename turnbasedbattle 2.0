@@ -1,0 +1,107 @@
+import random
+import time
+
+print "Type in command. Punch deals damage, heal increases health, wait increases stamina."
+def game():
+
+#player
+    player_health = 100
+    player_stamina = 100
+    player_attack = 5
+    player_defense = 5
+    player_punch = 'punch'
+    player_heal = 'heal'
+    player_wait = 'wait'
+    
+
+#enemy
+    enemy_health = 100
+    enemy_stamina = 100
+    enemy_attack = 5
+    enemy_defense = 5
+    enemy_punch = 'punch'
+    enemy_heal = 'heal'
+    enemy_wait = 'wait'
+
+#attack bases
+    punch_damage = 5
+    heal_buff = 5
+    stamina_buff = 5
+    
+
+    finished = False
+    while not finished:
+        enemy_moves = [enemy_punch, enemy_heal, enemy_wait]
+        enemy_move = random.choice(enemy_moves)
+    
+        print 'PLAYER: health %s, stamina %s, moves: %s, %s, %s' % (player_health, player_stamina, player_punch, player_heal, player_wait)
+        print 'ENEMY: health %s, stamina %s, moves: %s, %s, %s' % (enemy_health, enemy_stamina, enemy_punch, enemy_heal, enemy_wait)
+
+#player modifiers
+        total_punch = int(punch_damage) * int(player_attack)
+        total_heal = int(heal_buff) * int(player_defense)
+        total_stamina = int(stamina_buff) * int(player_defense)
+        
+#player input
+        attack = raw_input('Choose attack ')
+        if attack == 'punch':
+            if player_stamina < 0:
+                enemy_health = enemy_health - total_punch * .5
+                player_stamina = player_stamina - 10
+            else:
+                enemy_health = enemy_health - total_punch
+                player_stamina = player_stamina - 10
+        elif attack == 'heal':
+            if player_stamina < 0:
+                player_health = player_health + total_heal * .5
+                player_stamina = player_stamina - 10
+            else:
+                player_health = player_health + total_heal
+                player_stamina = player_stamina - 10
+        elif attack == 'wait':
+            if player_stamina < 0:
+                player_stamina = player_stamina + total_stamina * .5
+            else:
+                player_stamina = player_stamina + total_stamina
+        
+#wait time
+        time.sleep(.75)
+#enemy modifiers
+        total_enemy_punch = int(punch_damage) * int(enemy_attack)
+        total_enemy_heal = int(heal_buff) * int(enemy_defense)
+        total_enemy_stamina = int(stamina_buff) * int(enemy_defense)
+#enemy input        
+        if enemy_move == 'punch':
+            if enemy_stamina < 0:
+                player_health = player_health - total_enemy_punch * .5
+                enemy_stamina = enemy_stamina - 10
+            else:
+                player_health = player_health - total_enemy_punch
+                enemy_stamina = enemy_stamina - 10
+        elif enemy_move == 'heal':
+            if enemy_stamina < 0:
+                enemy_health = enemy_health + total_enemy_heal * .5
+                enemy_stamina = enemy_stamina - 10
+            else:
+                enemy_health = enemy_health + total_enemy_heal
+                enemy_stamina = enemy_stamina - 10
+        elif enemy_move == 'wait':
+            if enemy_stamina < 0:
+                enemy_stamina = enemy_stamina + total_enemy_stamina * .5
+            else:
+                enemy_stamina = enemy_stamina + total_enemy_stamina
+        
+#winning criteria
+        if player_health <= 0:
+            player_health = 0
+            print "ENEMY WINS"
+            break
+        elif enemy_health <= 0:
+            enemy_health < 0
+            print "PLAYER WINS"
+            break
+    finished = True
+    
+game()
+
+raw_input()
